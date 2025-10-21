@@ -726,12 +726,7 @@
         let selectedEntries = [];
 
         // Log data from main.html
-        const logData = [
-        ];
-
-        // ========== TASK 2: PHISHING EMAIL ==========
-        let draggedEmail = null;
-        const emails = [ { id: 1, timestamp: "Oct 09 00:15:03", host: "websrv01", service: "kernel", action: "ACCEPT", source: "192.168.1.42", dest: "192.168.1.10", protocol: "TCP", srcPort: "53214", destPort: "443", details: "" },
+        const logData = [{ id: 1, timestamp: "Oct 09 00:15:03", host: "websrv01", service: "kernel", action: "ACCEPT", source: "192.168.1.42", dest: "192.168.1.10", protocol: "TCP", srcPort: "53214", destPort: "443", details: "" },
   { id: 2, timestamp: "Oct 09 00:17:22", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.10", dest: "8.8.8.8", protocol: "UDP", srcPort: "51723", destPort: "53", details: "" },
   { id: 3, timestamp: "Oct 09 00:18:15", host: "dbsrv02", service: "sshd", action: "Accepted password", source: "192.168.1.50", dest: "", protocol: "SSH", srcPort: "51512", destPort: "22", details: "for admin" },
   { id: 4, timestamp: "Oct 09 00:19:41", host: "app01", service: "systemd", action: "Started", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "nginx service" },
@@ -749,14 +744,14 @@
   { id: 16, timestamp: "Oct 09 01:04:43", host: "websrv02", service: "sshd", action: "Failed password", source: "45.83.212.99", dest: "", protocol: "SSH", srcPort: "50412", destPort: "22", details: "for invalid user test" },
   { id: 17, timestamp: "Oct 09 01:05:01", host: "websrv02", service: "sshd", action: "Failed password", source: "45.83.212.99", dest: "", protocol: "SSH", srcPort: "50413", destPort: "22", details: "for invalid user admin" },
   { id: 18, timestamp: "Oct 09 01:05:44", host: "websrv02", service: "sshd", action: "Failed password", source: "45.83.212.99", dest: "", protocol: "SSH", srcPort: "50414", destPort: "22", details: "for invalid user root" },
-  { id: 19, timestamp: "Oct 09 01:06:09", host: "websrv02", service: "sshd", action: "Accepted password", source: "45.83.212.99", dest: "Unkown", protocol: "SSH", srcPort: "50415", destPort: "22", details: "for admin" },
+  { id: 19, timestamp: "Oct 09 01:06:09", host: "websrv02", service: "sshd", action: "Accepted password", source: "45.83.212.99", dest: "", protocol: "SSH", srcPort: "50415", destPort: "22", details: "for admin" },
   { id: 20, timestamp: "Oct 09 01:07:42", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.10", dest: "198.51.100.44", protocol: "TCP", srcPort: "49831", destPort: "8080", details: "unusual outbound" },
-  { id: 21, timestamp: "Oct 09 01:09:12", host: "app01", service: "systemd", action: "Unexpected process", source: "", dest: "Unkown", protocol: "", srcPort: "", destPort: "", details: "/tmp/.hidden/runme.sh" },
-  { id: 22, timestamp: "Oct 09 01:09:33", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.10", dest: "Unkown", protocol: "TCP", srcPort: "49832", destPort: "8080", details: "data exfil pattern" },
+  { id: 21, timestamp: "Oct 09 01:09:12", host: "app01", service: "systemd", action: "Unexpected process", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "/tmp/.hidden/runme.sh" },
+  { id: 22, timestamp: "Oct 09 01:09:33", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.10", dest: "198.51.100.44", protocol: "TCP", srcPort: "49832", destPort: "8080", details: "data exfil pattern" },
   { id: 23, timestamp: "Oct 09 01:10:41", host: "dbsrv02", service: "systemd", action: "Created user", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "backup1" },
   { id: 24, timestamp: "Oct 09 01:12:56", host: "fw01", service: "kernel", action: "DROP", source: "203.0.113.44", dest: "192.168.1.10", protocol: "TCP", srcPort: "50522", destPort: "3389", details: "" },
   { id: 25, timestamp: "Oct 09 01:15:32", host: "websrv02", service: "httpd", action: "POST", source: "192.168.1.10", dest: "", protocol: "HTTP", srcPort: "", destPort: "80", details: "/upload.php 500 0" },
-  { id: 26, timestamp: "Oct 09 01:16:04", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.10", dest: "Unkown", protocol: "TCP", srcPort: "49833", destPort: "8080", details: "persistence beacon" },
+  { id: 26, timestamp: "Oct 09 01:16:04", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.10", dest: "198.51.100.44", protocol: "TCP", srcPort: "49833", destPort: "8080", details: "persistence beacon" },
   { id: 27, timestamp: "Oct 09 01:17:49", host: "app01", service: "CRON", action: "CMD", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "/tmp/.hidden/runme.sh" },
   { id: 28, timestamp: "Oct 09 01:20:10", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.45", dest: "192.168.1.10", protocol: "TCP", srcPort: "54111", destPort: "443", details: "" },
   { id: 29, timestamp: "Oct 09 01:23:39", host: "dbsrv01", service: "systemd", action: "Finished", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "hourly data sync" },
@@ -777,7 +772,7 @@
   { id: 44, timestamp: "Oct 09 02:11:22", host: "app01", service: "CRON", action: "CMD", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "/usr/local/bin/cleanup.sh" },
   { id: 45, timestamp: "Oct 09 02:13:33", host: "websrv02", service: "sshd", action: "Failed password", source: "203.0.113.21", dest: "", protocol: "SSH", srcPort: "50422", destPort: "22", details: "for invalid user guest" },
   { id: 46, timestamp: "Oct 09 02:15:11", host: "dbsrv01", service: "systemd", action: "Created", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "temporary log archive" },
-  { id: 47, timestamp: "Oct 09 02:16:47", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.10", dest: "Unkown", protocol: "TCP", srcPort: "49834", destPort: "8080", details: "unusual outbound" },
+  { id: 47, timestamp: "Oct 09 02:16:47", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.10", dest: "198.51.100.44", protocol: "TCP", srcPort: "49834", destPort: "8080", details: "unusual outbound" },
   { id: 48, timestamp: "Oct 09 02:18:21", host: "app01", service: "systemd", action: "Unexpected process", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "/tmp/.hidden/script.sh" },
   { id: 49, timestamp: "Oct 09 02:20:44", host: "mail01", service: "postfix/smtpd", action: "connect", source: "192.168.1.16", dest: "", protocol: "SMTP", srcPort: "", destPort: "25", details: "" },
   { id: 50, timestamp: "Oct 09 02:22:59", host: "websrv02", service: "httpd", action: "GET", source: "", dest: "", protocol: "HTTP", srcPort: "", destPort: "80", details: "/login 200 1043" },
@@ -797,7 +792,30 @@
   { id: 64, timestamp: "Oct 09 02:46:12", host: "mail01", service: "postfix/smtpd", action: "connect", source: "192.168.1.17", dest: "", protocol: "SMTP", srcPort: "", destPort: "25", details: "" },
   { id: 65, timestamp: "Oct 09 02:47:59", host: "websrv02", service: "httpd", action: "GET", source: "", dest: "", protocol: "HTTP", srcPort: "", destPort: "80", details: "/dashboard 200 1211" },
   { id: 66, timestamp: "Oct 09 02:49:30", host: "fw01", service: "kernel", action: "ACCEPT", source: "192.168.1.46", dest: "172.217.14.112", protocol: "TCP", srcPort: "50224", destPort: "443", details: "" },
-  { id: 67, timestamp: "Oct 09 02:50:47", host: "dbsrv02", service: "systemd", action: "Finished", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "temporary backup" }
+  { id: 67, timestamp: "Oct 09 02:50:47", host: "dbsrv02", service: "systemd", action: "Finished", source: "", dest: "", protocol: "", srcPort: "", destPort: "", details: "temporary backup" }];
+
+        // ========== TASK 2: PHISHING EMAIL ==========
+        let draggedEmail = null;
+        const emails = [{id:1, text: 'Subject: Invoice INV-2025-774 — Immediate payment required', type:'phishing'},
+  {id:2, text: 'Subject: Action Required — Your account password expires today', type:'phishing'},
+  {id:3, text: 'Subject: CONGRATULATIONS — You’ve been selected for $1,000 prize!', type:'phishing'},
+  {id:4, text: 'Subject: URGENT: New bank details for your upcoming payment to VendorCorp', type:'phishing'},
+  {id:5, text: 'Subject: URGENT — Wire transfer request, confidential', type:'phishing'},
+  {id:6, text: 'Subject: A document has been shared with you — Project Plan v2', type:'phishing'},
+  {id:7, text: 'Subject: Mandatory All-Staff Meeting — Please Accept', type:'phishing'},
+  {id:8, text: 'Subject: Important — Tax refund requires confirmation', type:'phishing'},
+  {id:9, text: 'Subject: Security Alert — Verify your account now or it will be suspended', type:'phishing'},
+  {id:10, text: 'Subject: Delivery attempt failed — redelivery fee required', type:'phishing'},
+  {id:11, text: 'Subject: Reminder — Invoice INV-3345 due 15 Oct 2025', type:'real'},
+  {id:12, text: 'Subject: Action required — Password expiry for alice.khan@gemsae.com', type:'real'},
+  {id:13, text: 'Subject: Regional Merit Scholarship — shortlist notification', type:'real'},
+  {id:14, text: 'Subject: Invitation to panel: “Emerging Technologies in Education” — 10 Nov 2025', type:'real'},
+  {id:15, text: 'Subject: Payment received — INV-7812, Ref: PAY-2025-0987', type:'real'},
+  {id:16, text: 'Subject: FY2025 Compliance Declaration — please complete by 31 Oct 2025', type:'real'},
+  {id:17, text: 'Subject: Quotation for Signage — site visit follow-up & deposit details', type:'real'},
+  {id:18, text: 'Subject: Matching campaign this weekend — support our scholarship fund', type:'real'},
+  {id:19, text: 'Subject: Shared drive “Curriculum” at 92% quota — recommended actions', type:'real'},
+  {id:20, text: 'Subject: Refunds for canceled session — timeline & support', type:'real'}
         ];
 
         // ========== TASK 3: FIREWALL CONSTRUCTION ==========
